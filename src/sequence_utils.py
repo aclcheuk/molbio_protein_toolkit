@@ -1,4 +1,6 @@
 # Sequence Pre-processing
+import src.constants as const  # Access all the constants and codon tables defined in constants.py
+
 
 def clean_sequence(seq:str) -> str:
     """
@@ -12,7 +14,7 @@ def is_valid_dna(seq: str) -> bool:
     """
     seq = clean_sequence(seq)
     for base in seq:
-        if base not in "ATGC":
+        if base not in const.DNA_BASES:
             return False
     return True
 
@@ -22,7 +24,7 @@ def is_valid_rna(seq: str) -> bool:
     """
     seq = clean_sequence(seq)
     for base in seq:
-        if base not in "AUGC":
+        if base not in const.RNA_BASES:
             return False
     return True
 
@@ -35,3 +37,5 @@ def transcribe_dna(seq: str) -> str:
         return seq.replace("T", "U")
     else:
         raise ValueError("Invalid DNA sequence")
+
+

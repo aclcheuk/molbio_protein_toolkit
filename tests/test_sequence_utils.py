@@ -1,4 +1,5 @@
-import pytest 
+import pytest
+
 
 def test_clean_sequence():
     from src.sequence_utils import clean_sequence
