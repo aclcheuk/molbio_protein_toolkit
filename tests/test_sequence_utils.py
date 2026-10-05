@@ -1,3 +1,4 @@
+import pytest 
 
 def test_clean_sequence():
     from src.sequence_utils import clean_sequence
@@ -27,4 +28,6 @@ def test_transcribe_dna():
     assert transcribe_dna("ATGC") == "AUGC"
     assert transcribe_dna("atgc") == "AUGC"
     assert transcribe_dna("A t G C") == "AUGC"
+    with pytest.raises(ValueError):
+        transcribe_dna("ATGCB") # Check function raises ValueError if invalid DNA sequence 
 
