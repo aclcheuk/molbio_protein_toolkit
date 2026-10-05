@@ -1,4 +1,3 @@
-import pytest
 
 def test_clean_sequence():
     from src.sequence_utils import clean_sequence
@@ -29,4 +28,3 @@ def test_transcribe_dna():
     assert transcribe_dna("atgc") == "AUGC"
     assert transcribe_dna("A t G C") == "AUGC"
 
-    

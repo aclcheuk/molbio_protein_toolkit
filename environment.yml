@@ -1,0 +1,7 @@
+name: molbio_prot_env
+channels:
+  - defaults
+dependencies:
+  - pytest
+  - ruff
+prefix: /opt/miniconda3/envs/molbio_prot_env
