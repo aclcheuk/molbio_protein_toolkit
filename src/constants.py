@@ -1,6 +1,7 @@
 # Constants and Tables
 
 DNA_BASES = "ATGC"
+DNA_COMPLEMENT = {"A": "T", "T": "A", "G": "C", "C": "G"}
 RNA_BASES = "AUGC"
 AMINO_ACIDS = "ACDEFGHIKLMNPQRSTVWY"
 TRIPLET_CODON_TABLE = {

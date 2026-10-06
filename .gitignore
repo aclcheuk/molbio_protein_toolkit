@@ -6,5 +6,8 @@ venv/
 .vscode/
 .env
 env/
+.env/
+conda-env/
+.conda/
 
 .ruff_cache

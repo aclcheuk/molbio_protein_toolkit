@@ -26,9 +26,25 @@ def test_is_valid_rna():
 
 def test_transcribe_dna():
     from src.sequence_utils import transcribe_dna
-    assert transcribe_dna("ATGC") == "AUGC"
+    assert transcribe_dna("ATGCCC") == "AUGCCC"
     assert transcribe_dna("atgc") == "AUGC"
     assert transcribe_dna("A t G C") == "AUGC"
     with pytest.raises(ValueError):
         transcribe_dna("ATGCB") # Check function raises ValueError if invalid DNA sequence 
+
+def test_complement_dna():
+    from src.sequence_utils import complement_dna
+    assert complement_dna("ATGCCC") == "TACGGG"
+    assert complement_dna("atgcTTtt") == "TACGAAAA"
+    assert complement_dna("A t G C AATTC") == "TACGTTAAG"
+    with pytest.raises(ValueError):
+        complement_dna("ATGCB.")
+
+def test_reverse_complement_dna():
+    from src.sequence_utils import reverse_complement_dna
+    assert reverse_complement_dna("ATGCCC") == "GGGCAT"
+    assert reverse_complement_dna("atgcTTtt") == "AAAAGCAT"
+    assert reverse_complement_dna("A t G C AATTC") == "GAATTGCAT"
+    with pytest.raises(ValueError):
+        reverse_complement_dna("ATGCB.") # Check function raises ValueError if invalid DNA sequence 
 
