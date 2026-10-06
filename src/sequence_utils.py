@@ -65,3 +65,35 @@ def complement_dna(seq:str) -> str:
         return comp_seq
     else:
         raise ValueError("Invalid DNA sequence")
+
+def is_orf(seq:str) -> bool:
+    """
+    Check if a DNA sequence is an open reading frame (ORF).
+    Starting with a start codon (ATG) and ending with a stop codon (TAA, TAG or TGA).
+    """
+    seq = clean_sequence(seq)
+    if is_valid_dna(seq):
+        start_codon = "ATG"
+        stop_codons = {"TAA", "TAG", "TGA"}
+        if seq.startswith(start_codon) and seq[-3:] in stop_codons:
+            return True
+        else:
+            raise ValueError("Sequence is not an open reading frame (ORF)")
+    else:
+        raise ValueError("Invalid DNA sequence")
+
+def translate_dna(seq:str) -> str:
+    """
+    Translate a DNA sequence into a protein sequence using the standard codon table.
+    """
+    seq = clean_sequence(seq)
+    if is_orf(seq):
+        protein_seq = ""
+        codon_table = const.TRIPLET_CODON_TABLE
+        for i in range(0, len(seq) - 3, 3):
+            codon = seq[i:i+3]
+            protein_seq += codon_table.get(codon, "_")
+        return protein_seq
+    else:
+        raise ValueError("Invalid DNA sequence or ORF")
+
