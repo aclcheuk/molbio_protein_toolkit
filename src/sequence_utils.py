@@ -84,7 +84,7 @@ def is_orf(seq:str) -> bool:
 
 def translate_dna(seq:str) -> str:
     """
-    Translate a DNA sequence into a protein sequence using the standard codon table.
+    Translate a DNA sequence into a protein sequence.
     """
     seq = clean_sequence(seq)
     if is_orf(seq):
@@ -96,4 +96,26 @@ def translate_dna(seq:str) -> str:
         return protein_seq
     else:
         raise ValueError("Invalid DNA sequence or ORF")
+
+def count_nucleotides(seq:str) -> dict:
+    """
+    Count the occurrences of each nucleotide in a DNA sequence.
+    """
+    seq = clean_sequence(seq)
+    if is_valid_dna(seq):
+        counts = {base: 0 for base in const.DNA_BASES}
+        for base in seq:
+            counts[base] += 1
+        return counts
+    else:
+        raise ValueError("Invalid DNA sequence")
+
+def gc_content(seq:str) -> float:
+    """Given a DNA sequence, returns GC content as a float value between 0 and 1."""
+    seq = clean_sequence(seq)
+    if is_valid_dna(seq):
+        gc_total = seq.count("G") + seq.count("C")
+        return gc_total / len(seq)
+    else:
+       raise ValueError("Invalid DNA sequence")
 

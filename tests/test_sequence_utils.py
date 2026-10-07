@@ -1,7 +1,7 @@
 import pytest
 
 
-# Unit Tests of src.sequence_utils.py functions
+# Unit Tests for src.sequence_utils.py functions
 def test_clean_sequence():
     from src.sequence_utils import clean_sequence
     assert clean_sequence(" a t g c ") == "ATGC"
@@ -68,4 +68,20 @@ def test_translate_dna():
         translate_dna("ATGAAAT") # Invalid ORF
     with pytest.raises(ValueError):
         translate_dna("ATGCB") # Invalid DNA sequence
+
+def test_count_nucleotides():
+    from src.sequence_utils import count_nucleotides
+    assert count_nucleotides("ATGCAACTC") == {"A": 3, "T": 2, "G": 1, "C": 3}
+    assert count_nucleotides("atgcATGC") == {"A": 2, "T": 2, "G": 2, "C": 2}
+    assert count_nucleotides("A t G C A T G C") == {"A": 2, "T": 2, "G": 2, "C": 2}
+    with pytest.raises(ValueError):
+        count_nucleotides("ATGCB") # Invalid DNA sequence
+
+def test_gc_content():
+    from src.sequence_utils import gc_content
+    assert gc_content("ATGCAACTC") == float(4/9)
+    assert gc_content("atgcATGC") == float(4/8)
+    assert gc_content("A t G C A T G C C") == float(5/9)
+    with pytest.raises(ValueError):
+        gc_content("ATGCB") # Invalid DNA sequence
 
